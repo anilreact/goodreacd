@@ -1,0 +1,536 @@
+@import './rcswitch';
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~react-bootstrap-daterangepicker/css/daterangepicker.css';
+@import '~react-bootstrap-typeahead/css/ClearButton.css';
+@import '~react-bootstrap-typeahead/css/Loader.css';
+@import '~react-bootstrap-typeahead/css/Token.css';
+@import '~react-bootstrap-typeahead/css/Typeahead.css';
+
+
+$fullMatchColor: #00ff7f;
+$fullMatchSecondColor: #00dfff;
+$partialMatchColor: #ffb172;
+$partialMatchSecondColor: #fe72ff;
+
+$verification100: $fullMatchColor;
+$verification80: $partialMatchColor;
+$verificationNoMatch: #cccccc;
+$verificationReject: #e25c56;
+
+$classificationA: $fullMatchColor;
+$classificationB: #e7ff00;
+$classificationB1: #e7ff00;
+$classificationB2: #e7ff00;
+$classificationB3: #e7ff00;
+$classificationC: #ff8000;
+$classificationC1: #ff8000;
+$classificationC2: #ff8000;
+$classificationD: #c90303;
+$classificationE: #723b1b;
+$classificationX: black;
+$classificationZ: #b3fffc;
+
+
+
+.react-bs-container-header {
+    padding-bottom: 0;
+}
+
+#page-title img {
+    height: 57px;
+}
+#return-to-top {
+     display: none;
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     background: rgba(15, 30, 50, 0.7);
+     width: 50px;
+     height: 50px;
+     text-decoration: none;
+     border-radius: 35px;
+     transition: all 0.3s ease;
+ }
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+}
+#return-to-top:hover {
+    background: rgba(15, 30, 50, 0.9);
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}
+#filters-actions {
+    transition: all 200ms ease, background 150ms ease;
+    background-color: white;
+    div#actions .btn {
+        width: 100%;
+        ~ .btn{
+            margin-top: 5px;
+        }
+    }
+}
+.fixed-header{
+    #filters-actions{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: whitesmoke;
+        box-shadow: 0 1px 3px grey;
+        padding: 5px 25px;
+        z-index: 1;
+    }
+    #return-to-top{
+        display: block;
+    }
+}
+
+#app {
+    .progress {
+        margin-left: 10px;
+        margin-bottom: 0;
+        .progress-bar {
+            width: 50px;
+            color: black;
+            &.noinfo {
+                background-color: black;
+            }
+        }
+    }
+    .compliance {
+        display: flex;
+        height: 25px;
+    }
+    .rc-switch {
+        margin: 2px;
+    }
+    table {
+        input, select {
+            max-height: 25px;
+            &.form-control {
+                padding: 3px 2px;
+            }
+        }
+
+    }
+    .navbar {
+        border: none;
+        border-bottom: 1px solid transparent;
+        border-radius: 0;
+        .navbar-nav > li > a {
+            line-height: 30px;
+        }
+    }
+    .navbar-brand {
+        padding: 0 50px 0 0;
+        height: 60px;
+    }
+    .nav.nav-tabs > li {
+        background-color: #ddd;
+        &.active {
+            background-color: #ffffff;
+        }
+    }
+    .tab-content {
+        border: 1px solid #ddd;
+        border-top: none;
+        padding: 20px;
+    }
+    .legend {
+        font-size: 0.8em;
+        margin-top: 5px;
+        .box-full-match, .box-partial-match {
+            padding: 0 5px;
+            margin-left: 5px;
+        }
+        .box-full-match {
+            background-color: $fullMatchColor;
+            &.secondList {
+                background-color: $fullMatchSecondColor;
+            }
+        }
+        .box-partial-match {
+            background-color: $partialMatchColor;
+            &.secondList {
+                background-color: $partialMatchSecondColor;
+            }
+        }
+    }
+    .loginForm {
+        max-width: 500px;
+        padding: 50px;
+        margin: 0 auto;
+        background-color: #e4ebf3;
+        border: 1px solid #c9d3e2;
+        border-radius: 5px;
+    }
+    .class {
+        margin: 5px 0px;
+        display: flex;
+        border: 1px dashed #92d0f5;
+        background-color: #f7fcff;
+        border-radius: 3px;
+        &.edited{
+            border: 2px dashed orange;
+            background-color: #fffdc1;
+        }
+        .classNumber {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7em;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAALUlEQVQYV2NkQAN7rj/0AQkxIovDBFEkkAVdNOW3gHWgC4J1YBNEkQBpR7YPAPa0FYcdaE9rAAAAAElFTkSuQmCC
+            ) repeat;
+            padding: 5px 15px;
+            align-content: center;
+            justify-content: center;
+            strong {
+                font-size: 3em;
+                width: 40px;
+                text-align: center;
+            }
+        }
+        .classText {
+            padding: 5px 15px;
+            width: 100%;
+            .content {
+                text-align: justify;
+            }
+            .contentCompareList {
+                text-align: justify;
+                border-top: 1px dashed gray;
+                padding-top: 4px;
+                margin-top: 8px;
+            }
+        }
+        .classTerm {
+            border: 2px solid #f7fcff;
+            padding: 2px;
+            line-height: 24px;
+            background-color: #eeeeee;
+            &:hover {
+                border: 2px solid #666;
+            }
+            .form-group{
+                margin-bottom: 0;
+            }
+            .form-control-feedback {
+                margin-top: -3px;
+            }
+            select, input {
+                height: 25px;
+                padding: 0px 12px;
+            }
+            input {
+                width: 200px;
+            }
+            &.full-match {
+                background-color: $fullMatchColor;
+                &.secondList {
+                    background-color: $fullMatchSecondColor;
+                }
+            }
+            &.partial-match {
+                background-color: $partialMatchColor;
+                &.secondList {
+                    background-color: $partialMatchSecondColor;
+                }
+            }
+            &.verification{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-radius: 5px;
+                padding: 2px 5px 2px 10px;
+                &.hidden{
+                    display: none;
+                }
+            }
+            &.verificationOK {
+                background-color: $verification100;
+            }
+            &.verificationHint{
+                background-color: $verification80;
+            }
+            &.verificationNone {
+                background-color: $verificationNoMatch;
+            }
+            &.verificationNotOK{
+                background-color: $verificationReject;
+            }
+        }
+    }
+}
+
+header.n-container {
+    height: 120px;
+    width: auto;
+    overflow: hidden;
+    padding-top: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    box-shadow: 0 1px 5px gray;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    h1 {
+        font-weight: normal;
+        text-rendering: optimizelegibility;
+        margin-top: 30px;
+        display: block;
+    }
+}
+
+.spinner.loading-spinner {
+    height: 50px;
+    width: 50px;
+    > div {
+        background-color: #6990c4;
+    }
+}
+
+.lctChecksContainer {
+    display: table;
+    .lctChecks {
+        display: table-row;
+        &:hover {
+            background-color: #c7d1ff;
+        }
+        .lctLanguageContainer {
+            display: table-cell;
+            width: 50px;
+        }
+        i {
+            width: 25px;
+            padding: 2px 5px;
+            &.fa-check-square-o {
+                color: green;
+            }
+            &.fa-square-o {
+                color: red;
+            }
+        }
+        .lctStatus {
+            width: 170px;
+        }
+        .lctStatus, .lctRemark {
+            display: table-cell;
+            padding: 0 10px;
+            div {
+                padding: 0 10px;
+            }
+        }
+    }
+}
+
+tr.highlight td {
+    background-color: yellow;
+}
+tr.fasttrack td {
+    background-color: #bae3ff;
+}
+
+.figurativeLogo {
+    display: inline-block;
+    cursor: pointer;
+    max-height: 28px;
+    max-width: 50%;
+    &.popup {
+        max-height: 100%;
+        max-width: 100%;
+        position: fixed;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 2;
+        box-shadow: 0px 0px 15px black;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+    img {
+        max-height: 28px;
+        max-width: 100%;
+    }
+}
+#feedback{
+    background-color: #efefef;
+    padding: 5px;
+    border: 1px dashed #9eacc5;
+    font-style: italic;
+}
+
+#app .class .classTerm.verification{
+    textarea[name="termResolutionComment"] {
+        height: 26px;
+        width: 200px;
+
+        &:focus{
+            height: 70px;
+        }
+    }
+    .supplement input[type="checkbox"]{
+        width: 20px;
+        height: 15px;
+        top: 1px;
+    }
+}
+
+.route-art28{
+    select[name="marktype"]{
+        display: none;
+    }
+    #filters{
+        select[name="entityType"]{
+            width: 170px !important;
+        }
+        select[name="language"]{
+            width: 170px !important;
+        }
+    }
+}
+span.classification{
+    padding: 2px 5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #c3c3c3;
+
+    &.classificationA{
+        background-color: $classificationA;
+    }
+    &.classificationB{
+        background-color: $classificationB;
+    }
+    &.classificationB1{
+        background-color: $classificationB1;
+    }
+    &.classificationB2{
+        background-color: $classificationB2;
+    }
+    &.classificationB3{
+        background-color: $classificationB3;
+    }
+    &.classificationC{
+        background-color: $classificationC;
+    }
+    &.classificationC1{
+        background-color: $classificationC1;
+    }
+    &.classificationC2{
+        background-color: $classificationC2;
+    }
+    &.classificationD{
+        background-color: $classificationD;
+        color: white;
+    }
+    &.classificationE{
+        background-color: $classificationE;
+        color: white;
+    }
+    &.classificationX{
+        background-color: $classificationX;
+        color: white;
+    }
+    &.classificationZ{
+        background-color: $classificationZ;
+    }
+}
+table.verificationDetails{
+    width: 100%;
+    background-color: white;
+    margin-top: 12px;
+}
+
+td.articlesTable {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .articlesContainer{
+        display: flex;
+        font-size: 0.8em;
+        flex-direction: row;
+        align-items: center;
+        height: 37px;
+        > div{
+            width: 32px;
+            border: 1px solid #9a9a9a;
+            padding: 3px 0;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            &.active{
+                background-color: #ff927b;
+                font-weight: bold;
+            }
+        }
+        &.articlesCan{
+            overflow: auto;
+            > div {
+                width: auto;
+                padding: 3px;
+                font-weight: bold;
+            }
+        }
+    }
+    &.articlesTablecan{
+        justify-content: flex-start;
+    }
+}
+
+.gsreport-section {
+    width: 700px;
+    select[name="termResolution"]{
+        width: 150px !important;
+    }
+    textarea{
+        width: 400px !important;
+    }
+}
+
+.compliance .progress {
+    border: 1px solid #ccc;
+    .progress-bar {
+        font-weight: bold;
+    }
+}
+
+.progress-bar-classification-ok {
+    background-color: #5cb85c;
+}
+.progress-bar-classification-hintSameClass {
+    background-color: #ecec3d;
+}
+
+.progress-bar-classification-hintWrongClass {
+    background-color: #f0ad4e;
+}
+
+.progress-bar-classification-none {
+    background-color: #c0d1d6;
+}
+
+.progress-bar-classification-nok {
+    background-color: #f59595;
+}
+
+
