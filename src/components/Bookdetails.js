@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from "prop-types";
 const Bookdetails =({bookDetail})=>{
 	var style = {
 		fontWeight:'bold',
@@ -18,5 +18,16 @@ return(
 );	
 
 }
+
+Bookdetails.prototype={
+		
+		bookDetail:PropTypes.oneOfType([
+			PropTypes.array,
+			PropTypes.object
+		  ])
+
+	}
+
+
 
 export default Bookdetails;

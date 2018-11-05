@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 const Datadisplay = (props)=>{
 	
 	return(
@@ -17,5 +18,12 @@ const Datadisplay = (props)=>{
 			</div>	
 		);	
 } 
-
+Datadisplay.propTypes = {
+	data: PropTypes.oneOfType([
+		PropTypes.array,
+		PropTypes.object
+	  ]),
+	bookDetails: PropTypes.func,
+	message:PropTypes.string
+  };
 export default Datadisplay;

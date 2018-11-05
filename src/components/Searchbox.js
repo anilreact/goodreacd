@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from "prop-types";
 class Searchbox extends React.Component{
 	
 	state = {
@@ -30,5 +30,8 @@ class Searchbox extends React.Component{
 		)
 	}	 
 }
-
+Searchbox.propTypes = {
+	searchBook: PropTypes.func,
+	fetch: PropTypes.bool
+  };
 export default Searchbox;
