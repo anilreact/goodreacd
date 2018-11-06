@@ -8,8 +8,8 @@ const Datadisplay = (props)=>{
 				<ul>
 					{
 						props.data.map((result,index) =>
-							<li key={result.id} > 
-								<a href="#" onClick={ props.bookDetails.bind(this,result.best_book.id) }>{result.best_book.title}</a>
+							<li key={result.id} class='data-list'> 
+								<a href="javascript:void(0)" onClick={ props.bookDetails.bind(this,result.best_book.id) }>{result.best_book.title}</a>
 							</li>
 						)
 					}

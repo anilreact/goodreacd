@@ -20,6 +20,9 @@ class App extends React.Component {
 		};
   }
   
+  componentDidCatch(error, info) {
+    this.setState({ hasError: true,error:info});
+  }
   searchBook =(keyWord)=>{
 		this.setState({fetchingData:true});
 		let currentComponent 		= this
