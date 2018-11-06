@@ -1,20 +1,36 @@
 import React from 'react';
 import PropTypes from "prop-types";
-
+import StarRatingComponent from 'react-star-rating-component';
 const Bookdetails =({bookDetail})=>{
 	var style = {
 		fontWeight:'bold',
 	};
 
+	var imageStyle= {
+		float:'left', 
+		marginRight:'15px'
+
+	}
 const bookData = bookDetail.GoodreadsResponse.book
 //console.log(bookData.authors.name);
 return(
 		<div className='book-details col-sm-8 custom-style'>
-			<div><label style={style}>Title:</label> {bookData.title.replace("<![CDATA[", "").replace("]]>", "")}</div>
-			<div><label style={style}>Descript:</label> {bookData.description.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
-			<div><label style={style}>Rarting:</label> {bookData.average_rating.replace("<![CDATA[", "").replace("]]>", "")}</div>
-			<div className='authorName'><label style={style}>author:</label> {bookData.authors.author.name.replace("<![CDATA[", "").replace("]]>", "")}</div>
-			<div><img src={bookData.image_url.replace("<![CDATA[", "").replace("]]>", "")}/></div>
+			<div style={imageStyle}><img src={bookData.image_url.replace("<![CDATA[", "").replace("]]>", "")}/></div>
+			<div>
+					<div><label style={style}>Title:</label> {bookData.title.replace("<![CDATA[", "").replace("]]>", "")}</div>
+					<div><label style={style}>Descript:</label> {bookData.description.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
+					<div><label style={style}>Rarting:</label> { <StarRatingComponent 
+																	name="Rarting" 
+																	starCount={10}
+																	value={parseFloat(bookData.average_rating)}
+																	
+																	/>
+																}
+													</div>
+					<div><label style={style}>Review Rating:</label> {bookData.ratings_count.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
+					<div><label style={style}>Review:</label> {bookData.text_reviews_count.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
+					<div className='authorName'><label style={style}>Author:</label> {bookData.authors.author.name.replace("<![CDATA[", "").replace("]]>", "")}</div>
+			</div>
 		</div>
 );	
 
