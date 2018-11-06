@@ -26,3 +26,14 @@ code {
 
   margin-top: 15px;
 }
+.list-group-item:hover{
+  background-color: #EFF0F1;
+}
+.list-group-item{
+  cursor: pointer;
+}
+.list-group-item:active{
+
+  background-color:#449D44;
+  color:#000;
+}

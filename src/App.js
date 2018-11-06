@@ -51,18 +51,26 @@ class App extends React.Component {
 
   }
  
-  bookDetails=(bookId)=>{
+  bookDetails=(e)=>{
 			let currentComponent = this
 			let bookdetailsApi = new Api(bookDetailsApi);
+			const bookId = e.target.getAttribute('data-id');
 			let bookdata = bookdetailsApi.bookDetail(bookId);
+			//remove from other
+			
+			if( document.querySelector ('ul.list-group li.active')){
+				document.querySelector ('ul.list-group li.active').classList.remove('active');
+			}
+			//add acive class
+			e.target.className +=' active';
 			this.setState({fetchingData:true});
 			bookdata.then(
 
 					function result(result){
 						
-						const	xml2jsonob 		=	new xml2json();
+						const xml2jsonob 		=	new xml2json();
 						const xmlDom			= xml2jsonob.Xmlparser(result.data);
-						const jsonData		= xml2jsonob.xmltoJson(xmlDom);
+						const jsonData			= xml2jsonob.xmltoJson(xmlDom);
 						currentComponent.setState({ bookDetails:jsonData});
 						currentComponent.setState({fetchingData:false});
 					},
