@@ -3,8 +3,8 @@ Poc:Search API
 
 To run this app on local system please follow below mentioned step
 
-1. mkdir <dir>
-2. cd  <dir path> and git clone https://github.com/anilreact/goodreacd.git
+1. mkdir "folder name"
+2. cd  "folder name" and git clone https://github.com/anilreact/goodreacd.git
 3. "npm install"
 4. Changes api key or use default in src/config
 5. "npm start" after you are abe to see on browser:http://localhost:3000
