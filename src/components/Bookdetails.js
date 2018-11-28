@@ -15,7 +15,7 @@ const Bookdetails =({bookDetail})=>{
 const bookData = bookDetail.GoodreadsResponse.book
 console.log(bookData.authors.author.id);
 //var Author_link = '';
-const Author_link = 'author/'+bookData.authors.author.id+'.'+bookData.authors.author.name.replace(/ /g, '_');
+const Author_link = '#author/'+bookData.authors.author.id+'.'+bookData.authors.author.name.replace(/ /g, '_');
 return(
 		<div className='book-details col-sm-8 custom-style'>
 			<div style={imageStyle}><img src={bookData.image_url.replace("<![CDATA[", "").replace("]]>", "")}/></div>
