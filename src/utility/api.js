@@ -33,6 +33,21 @@ class Api{
             console.error(error)
           }   
     }
+	
+	authorDetails(Id){
+		
+		
+		const requestUri =
+        `https://cors-anywhere.herokuapp.com/` +
+        `${this.ApiURL}/${Id}?key=${apiKey}`;
+      
+        try {
+            return axios.get(requestUri);
+          } catch (error) {
+            console.error(error)
+          }
+		
+	}
 }
 
 export default Api;

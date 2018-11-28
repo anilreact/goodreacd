@@ -11,8 +11,11 @@ const Bookdetails =({bookDetail})=>{
 		marginRight:'15px'
 
 	}
+	
 const bookData = bookDetail.GoodreadsResponse.book
-//console.log(bookData.authors.name);
+console.log(bookData.authors.author.id);
+//var Author_link = '';
+const Author_link = 'author/'+bookData.authors.author.id+'.'+bookData.authors.author.name.replace(/ /g, '_');
 return(
 		<div className='book-details col-sm-8 custom-style'>
 			<div style={imageStyle}><img src={bookData.image_url.replace("<![CDATA[", "").replace("]]>", "")}/></div>
@@ -29,14 +32,18 @@ return(
 													</div>
 					<div><label style={style}>Review Rating:</label> {bookData.ratings_count.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
 					<div><label style={style}>Review:</label> {bookData.text_reviews_count.replace("<![CDATA[", "").replace("]]>", "").replace(/<\/?[^>]+(>|$)/g, "")}</div>
-					<div className='authorName'><label style={style}>Author:</label> {bookData.authors.author.name.replace("<![CDATA[", "").replace("]]>", "")}</div>
+					<div className='authorName'>
+						
+						<label style={style}>Author:</label> <a title="Click to view Author details" href={Author_link} target='_blank'>{bookData.authors.author.name.replace("<![CDATA[", "").replace("]]>", "")}</a>
+					
+					</div>
 			</div>
 		</div>
 );	
 
 }
 
-Bookdetails.prototype={
+Bookdetails.propTypes={
 		
 		bookDetail:PropTypes.oneOfType([
 			PropTypes.array,
